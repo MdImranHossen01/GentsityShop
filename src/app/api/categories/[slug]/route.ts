@@ -74,7 +74,7 @@ export async function PUT(
 
     await revalidateTag('categories', 'max');
     revalidatePath('/');
-    purgeCloudflareCache().catch(() => {});
+    await purgeCloudflareCache().catch(() => {});
 
     return NextResponse.json(updatedCategory);
   } catch (error) {
@@ -144,7 +144,7 @@ export async function DELETE(
         }
       }
 
-      purgeCloudflareCache().catch(() => {});
+      await purgeCloudflareCache().catch(() => {});
 
       return NextResponse.json({ message: 'Category deleted successfully' });
     } finally {

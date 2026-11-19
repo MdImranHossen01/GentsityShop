@@ -95,7 +95,7 @@ export async function PUT(
       console.error('[Admin Blog Update revalidatePath] error:', revalidateError);
     }
 
-    purgeCloudflareCache().catch(() => {});
+    await purgeCloudflareCache().catch(() => {});
 
     return NextResponse.json(blog);
   } catch (error: any) {
@@ -148,7 +148,7 @@ export async function DELETE(
       console.error('[Admin Blog Delete revalidatePath] error:', revalidateError);
     }
 
-    purgeCloudflareCache().catch(() => {});
+    await purgeCloudflareCache().catch(() => {});
 
     return NextResponse.json({ message: 'Blog deleted successfully and image removed from R2' });
   } catch (error: any) {
